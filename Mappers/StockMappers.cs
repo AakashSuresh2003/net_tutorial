@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Models;
 using api.Dtos.Stock;
+using net_tutorial.Mappers;
+
 
 namespace api.Mappers
 {
@@ -19,7 +21,8 @@ namespace api.Mappers
                 Purchase = stock.Purchase,
                 LastDiv = stock.LastDiv,
                 Industry = stock.Industry,
-                MarketCap = stock.MarketCap
+                MarketCap = stock.MarketCap,
+                Comments = stock.Comments.Select(c => c.ToCommentDto()).ToList(),
             };
         }
 
