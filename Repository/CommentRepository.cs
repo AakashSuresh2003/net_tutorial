@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using net_tutorial.Interface;
 
@@ -24,6 +25,16 @@ namespace net_tutorial.Repository
             return commentModel;
         }
 
+        public async Task<Comment?> DeleteAsync(int id)
+        {
+            var commentModel = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
+            if(commentModel == null){
+                return null;
+            }
+            _context.Comments.Remove(commentModel);
+            await _context.SaveChangesAsync();
+            return commentModel;
+        }
         public async Task<List<Comment>> GetAllAsync()
         {
             return await _context.Comments.ToListAsync();
