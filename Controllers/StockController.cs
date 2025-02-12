@@ -41,6 +41,10 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateStock([FromBody] CreateStockRequestDto StockDto)  
         {
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+
             var stockModel = StockDto.ToStockFromCreateDto();
             await _stockRepo.CreateAsync(stockModel);
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
@@ -48,6 +52,10 @@ namespace api.Controllers
 
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateStockRequestDto updateDto){
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+
             var stockModel = await _stockRepo.UpdateAsync(id, updateDto);
             if(stockModel == null){
                 return NotFound();
@@ -58,6 +66,12 @@ namespace api.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+            var commentsToDelete = _context.Comments.Where(c => c.StockId == id);
+            _context.Comments.RemoveRange(commentsToDelete); 
+
             var stockModel = await _stockRepo.DeleteAsync(id);
             if(stockModel == null){
                 return NotFound();
