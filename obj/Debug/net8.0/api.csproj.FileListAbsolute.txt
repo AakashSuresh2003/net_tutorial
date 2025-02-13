@@ -284,3 +284,5 @@ C:\Users\Aakash\Desktop\Net\net_tutorial\bin\Debug\net8.0\Microsoft.AspNetCore.J
 C:\Users\Aakash\Desktop\Net\net_tutorial\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Aakash\Desktop\Net\net_tutorial\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Aakash\Desktop\Net\net_tutorial\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\Aakash\Desktop\Net\net_tutorial\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Aakash\Desktop\Net\net_tutorial\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
