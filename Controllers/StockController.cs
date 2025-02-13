@@ -8,6 +8,7 @@ using api.Mappers;
 using api.Dtos.Stock;
 using api.Interface;
 using Microsoft.EntityFrameworkCore;
+using net_tutorial.Helpers;
 
 namespace api.Controllers
 {
@@ -23,8 +24,8 @@ namespace api.Controllers
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll(){
-            var stocks = await _stockRepo.GetAllAsync();
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query){
+            var stocks = await _stockRepo.GetAllAsync(query);
             var stockDto = stocks.Select(s => s.ToStockDto());
             return Ok(stockDto);
         }
